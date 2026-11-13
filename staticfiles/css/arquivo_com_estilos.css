@@ -1,0 +1,32 @@
+/* Estilos complementares do ClinicaApp (carregados em templates/base.html) */
+
+/* Aplica uma aparencia Bootstrap aos campos gerados automaticamente pelo Django */
+input,
+select,
+textarea {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .375rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25);
+}
+
+table.table td,
+table.table th {
+    vertical-align: middle;
+}
