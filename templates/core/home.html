@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio | {{ block.super }}{% endblock title %}
+
+{% block body %}
+<div class="p-4 mb-4 bg-white rounded shadow-sm">
+    <h1 class="h3">Sistema de Gerenciamento da Clinica</h1>
+    <p class="text-muted mb-0">
+        Projeto UDWMJ (Django + HTML) e SDM (Django REST Framework) com banco de dados Oracle.
+    </p>
+</div>
+
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Pacientes</h5>
+                <p class="card-text">Cadastro dos pacientes da clinica.</p>
+                <a href="{% url 'paciente:list' %}" class="btn btn-primary">Acessar</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
