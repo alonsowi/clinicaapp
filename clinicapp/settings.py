@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'core.apps.CoreConfig',
     'paciente.apps.PacienteConfig',
+    'recepcionista.apps.RecepcionistaConfig',
 ]
 
 MIDDLEWARE = [
