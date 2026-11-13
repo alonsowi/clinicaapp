@@ -1,8 +1,10 @@
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+from rest_framework import viewsets
 
 from .models import Agendamento
+from .serializers import AgendamentoSerializer
 
 
 # ---------------------------------------------------------------------------
@@ -56,3 +58,13 @@ class AgendamentoDeleteView(DeleteView):
     def form_valid(self, form):
         messages.success(self.request, 'Agendamento excluido com sucesso!')
         return super().form_valid(form)
+
+
+# ---------------------------------------------------------------------------
+# SDM - Django REST Framework
+# ---------------------------------------------------------------------------
+class AgendamentoViewSet(viewsets.ModelViewSet):
+    """CRUD completo da API REST de agendamentos."""
+
+    queryset = Agendamento.objects.select_related('id_paciente', 'id_recep')
+    serializer_class = AgendamentoSerializer
