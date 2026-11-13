@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Excluir recepcionista | {{ block.super }}{% endblock title %}
+
+{% block body %}
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="card border-danger shadow-sm">
+            <div class="card-header bg-danger text-white">
+                <h1 class="h5 mb-0">Excluir recepcionista</h1>
+            </div>
+            <div class="card-body">
+                <p>Tem certeza de que deseja excluir o(a) recepcionista
+                    <strong>{{ object.nome }}</strong>?</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-danger">Confirmar exclusao</button>
+                        <a href="{% url 'recepcionista:list' %}" class="btn btn-outline-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
