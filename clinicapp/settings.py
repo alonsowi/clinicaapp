@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'paciente.apps.PacienteConfig',
     'recepcionista.apps.RecepcionistaConfig',
+    'agendamento.apps.AgendamentoConfig',
 ]
 
 MIDDLEWARE = [
