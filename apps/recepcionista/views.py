@@ -1,8 +1,10 @@
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+from rest_framework import viewsets
 
 from .models import Recepcionista
+from .serializers import RecepcionistaSerializer
 
 
 # ---------------------------------------------------------------------------
@@ -53,3 +55,13 @@ class RecepcionistaDeleteView(DeleteView):
     def form_valid(self, form):
         messages.success(self.request, 'Recepcionista excluido(a) com sucesso!')
         return super().form_valid(form)
+
+
+# ---------------------------------------------------------------------------
+# SDM - Django REST Framework
+# ---------------------------------------------------------------------------
+class RecepcionistaViewSet(viewsets.ModelViewSet):
+    """CRUD completo da API REST de recepcionistas."""
+
+    queryset = Recepcionista.objects.all()
+    serializer_class = RecepcionistaSerializer
