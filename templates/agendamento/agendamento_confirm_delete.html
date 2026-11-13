@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Excluir agendamento | {{ block.super }}{% endblock title %}
+
+{% block body %}
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="card border-danger shadow-sm">
+            <div class="card-header bg-danger text-white">
+                <h1 class="h5 mb-0">Excluir agendamento</h1>
+            </div>
+            <div class="card-body">
+                <p>Tem certeza de que deseja excluir o agendamento
+                    <strong>#{{ object.chamado }}</strong>
+                    de <strong>{{ object.data|date:'d/m/Y' }}</strong>
+                    as <strong>{{ object.horario|time:'H:i' }}</strong>?</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-danger">Confirmar exclusao</button>
+                        <a href="{% url 'agendamento:list' %}" class="btn btn-outline-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
