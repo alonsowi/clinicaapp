@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Avaliacoes | {{ block.super }}{% endblock title %}
+
+{% block body %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3 mb-0">Avaliacoes</h1>
+    <a href="{% url 'avaliacao:create' %}" class="btn btn-success">Nova avaliacao</a>
+</div>
+
+<div class="card shadow-sm">
+    <div class="table-responsive">
+        <table class="table table-striped table-hover mb-0">
+            <thead class="table-primary">
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nota</th>
+                    <th>Recomendaria</th>
+                    <th>Cliente</th>
+                    <th>Sessao</th>
+                    <th>Criada em</th>
+                    <th class="text-end">Acoes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for avaliacao in avaliacoes %}
+                <tr>
+                    <td>#{{ avaliacao.pk }}</td>
+                    <td>{{ avaliacao.nota }}</td>
+                    <td>{% if avaliacao.recomendaria %}Sim{% else %}Nao{% endif %}</td>
+                    <td>{{ avaliacao.cliente }}</td>
+                    <td>{{ avaliacao.sessao }}</td>
+                    <td>{{ avaliacao.criada_em|date:'d/m/Y H:i' }}</td>
+                    <td class="text-end">
+                        <a href="{% url 'avaliacao:update' avaliacao.pk %}" class="btn btn-sm btn-warning">Editar</a>
+                        <a href="{% url 'avaliacao:delete' avaliacao.pk %}" class="btn btn-sm btn-danger">Excluir</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="7" class="text-center text-muted py-4">Nenhuma avaliacao cadastrada.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% include 'core/_pagination.html' %}
+{% endblock body %}
