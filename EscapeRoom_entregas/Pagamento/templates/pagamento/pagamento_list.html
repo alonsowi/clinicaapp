@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Pagamentos | {{ block.super }}{% endblock title %}
+
+{% block body %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3 mb-0">Pagamentos</h1>
+    <a href="{% url 'pagamento:create' %}" class="btn btn-success">Novo pagamento</a>
+</div>
+
+<div class="card shadow-sm">
+    <div class="table-responsive">
+        <table class="table table-striped table-hover mb-0">
+            <thead class="table-primary">
+                <tr>
+                    <th>Codigo da transacao</th>
+                    <th>Valor</th>
+                    <th>Metodo</th>
+                    <th>Status</th>
+                    <th>Vencimento</th>
+                    <th>Realizado em</th>
+                    <th class="text-end">Acoes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pagamento in pagamentos %}
+                <tr>
+                    <td>{{ pagamento.codigo_transacao }}</td>
+                    <td>{{ pagamento.valor }}</td>
+                    <td>{{ pagamento.get_metodo_display }}</td>
+                    <td>{{ pagamento.get_status_display }}</td>
+                    <td>{{ pagamento.data_vencimento|date:'d/m/Y'|default_if_none:'-' }}</td>
+                    <td>{{ pagamento.realizado_em|date:'d/m/Y H:i'|default_if_none:'-' }}</td>
+                    <td class="text-end">
+                        <a href="{% url 'pagamento:update' pagamento.pk %}" class="btn btn-sm btn-warning">Editar</a>
+                        <a href="{% url 'pagamento:delete' pagamento.pk %}" class="btn btn-sm btn-danger">Excluir</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="7" class="text-center text-muted py-4">Nenhum pagamento cadastrado.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% include 'core/_pagination.html' %}
+{% endblock body %}
